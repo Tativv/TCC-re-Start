@@ -4,11 +4,11 @@ const imgView = document.getElementById("img-view");
 const dropArea = document.getElementById("drop-area")
 
 
-// Configura tus credenciales de AWS
+// Configurar as credenciales de AWS
 AWS.config.update({
-    accessKeyId: 'AKIAQZVZOJ5MFWWDTGN7',
-    secretAccessKey: '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',
-    region: 'sa-east-1'
+    accessKeyId: '',
+    secretAccessKey: '',
+    region: ''
 });
 
 
@@ -21,7 +21,7 @@ function uploadImage() {
         return;
     }
 
-    // Especifica la carpeta dentro del bucket
+    // Especificar la carpeta dentro del bucket
     const folder = 'imagens/';
     const params = {
         Bucket: 'grupo1-restart-brpor1',
@@ -56,6 +56,7 @@ dropArea.addEventListener("drop", function(e){
     e.preventDefault();
     const files  = e.dataTransfer.files;
     if (files.length > 0) {
+
         // Actualizar la vista previa al soltar la imagen
         const imgLink = URL.createObjectURL(files[0]);
         imgView.style.backgroundImage = `url(${imgLink})`;
