@@ -4,6 +4,7 @@ const imgView = document.getElementById("img-view");
 const dropArea = document.getElementById("drop-area")
 
 
+
 // Configurar as credenciales de AWS
 AWS.config.update({
     accessKeyId: '',
@@ -14,7 +15,7 @@ AWS.config.update({
 
 const s3 = new AWS.S3();
 
-function uploadImage() {
+async function uploadImage() {
     const file = inputFile.files[0];
     if (!file) {
         alert('Selecione um arquivo');
@@ -24,12 +25,14 @@ function uploadImage() {
     // Especificar la carpeta dentro del bucket
     const folder = 'imagens/';
     const params = {
-        Bucket: 'grupo1-restart-brpor1',
+        Bucket: 'trabajofinalcd',
         Key: folder + file.name,
         ContentType: file.type,
         Body: file,
         ACL: 'public-read' // Opcional: establece los permisos del archivo
     };
+
+    
 
     s3.upload(params, function(err, data) {
         if (err) {
@@ -81,9 +84,3 @@ function fileSelected(event) {
     imgView.textContent = "";
     imgView.style.border = 0;
 }
-
-
-
-
-
-
